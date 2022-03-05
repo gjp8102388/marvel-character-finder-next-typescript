@@ -1,23 +1,26 @@
 .container {
   padding: 0 1rem;
-  background-image:url("../public/marvel.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+}
+.app {
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-}
-.main {
-  flex:1;
 }
 .footer {
   flex: 0;
   padding: 2rem 0;
   font-size: 1rem;
   font-weight: bold;
+}
+.cardContainer{
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+  gap: 20px;
 }
 @media (max-width: 768px) {
   .footer{

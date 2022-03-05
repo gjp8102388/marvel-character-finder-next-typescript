@@ -1,41 +1,84 @@
-import type { NextPage } from 'next'
+import type {NextPage} from 'next'
 import Head from 'next/head'
-import Search from "../components/Search/Search";
-import styles from '../styles/Home.module.css'
-import React, {createContext, useState} from "react";
+import {AppBar, Box, Container, CssBaseline, Grid, Link, Toolbar, Typography} from "@mui/material";
+import React, {useState} from "react";
 import {useFetch} from "../common/customHooks/useFetch";
 import {getCharacterList} from "../common/apiUtils";
-import CharacterList from "../components/CharacterList/CharacterList";
+import Search from "../components/Search/Search";
+import CharacterCard from "../components/CharacterCard/CharacterCard";
+function Copyright() {
+    return (
+        <Typography variant="body2" align="center">
+            <Link href="https://www.marvel.com/" color="inherit" underline="none">
+                Data provided by Marvel. © 2020 MARVEL
+            </Link>
+        </Typography>
+    )
+}
 
 const Home: NextPage = () => {
     const [search, setSearch] = useState('')
-    const {data: characterList } = useFetch(getCharacterList,[search? search:'spider-man'],[],[search])
+    const {data: characterList, loading} = useFetch(getCharacterList, [search], [], [search])
     return (
-    <div className={styles.container}>
-      <Head>
-        <title>Marvel Character Finder</title>
-        <meta name="description" content="Find your favourite Marvel character"/>
-        <meta name="author" content="Aaron Guo <gjp77440169@gmail.com>"/>
-        <link rel="icon" href="/favicon.ico"/>
-      </Head>
+        <Box sx={{display: 'flex', flexDirection: 'column', minHeight: '100vh',}}>
+            <CssBaseline/>
+            <Head>
+                <title>Marvel Character Finder</title>
+                <meta name="description" content="Find your favourite Marvel character"/>
+                <meta name="author" content="Aaron Guo <gjp77440169@gmail.com>"/>
+                <link rel="icon" href="/favicon.ico"/>
+            </Head>
+            <AppBar position="relative" style={{background: '#ED1D24'}}>
+                <Toolbar>
+                    <Typography variant="h6" color="inherit" noWrap>
+                        Marvel Character Finder
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+            <Container component="main" sx={{mt: 8, mb: 2}} maxWidth="xl">
+                <Grid container
+                      direction="column"
+                      justifyContent="center"
+                      alignItems="center">
+                    <Grid item>
+                        <Typography variant="h6" noWrap>
+                            Find your favourite Marvel Character
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Search handleChange={(val: string) => setSearch(val)}/>
+                    </Grid>
+                    <Grid  container
+                           direction="row"
+                           justifyContent="center"
+                           alignItems="center"
+                    spacing={3}>
+                        {characterList.map(character=>(
+                            <Grid item  sm={6} md={6} lg={3}>
+                                <CharacterCard key={character['id']} name={character['name']} description={character['description']} modified={character['modified']} thumbnail={character['thumbnail']}/>
+                            </Grid>
+                                ))}
 
-      <main className={styles.main}>
-        <Search handleChange={(val: string)=>setSearch(val)}/>
+                    </Grid>
+                </Grid>
 
-              <CharacterList characterList ={characterList}/>
-      </main>
 
-      <footer className={styles.footer}>
-        <a
-            href="https://www.marvel.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-          Data provided by Marvel. © 2020 MARVEL
-        </a>
-      </footer>
-    </div>
-  )
+            </Container>
+            <Box
+                component="footer"
+                sx={{
+                    py: 3,
+                    px: 2,
+                    mt: 'auto',
+                    backgroundColor: 'darkgray'
+                }}
+            >
+                <Container maxWidth="sm">
+                    <Copyright/>
+                </Container>
+            </Box>
+        </Box>
+    )
 }
 
 export default Home

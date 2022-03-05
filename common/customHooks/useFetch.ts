@@ -10,7 +10,7 @@ export const useFetch = <T>(apiCall: (...args: any[]) => AxiosPromise, options: 
         const fetchData = async () => {
             const response = await apiCall(...options);
             if (isSubscribed && response.status === 200) {
-                setData(response.data);
+                setData(response.data.data.results);
                 setLoading(false);
             }
         };
