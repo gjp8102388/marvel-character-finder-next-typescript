@@ -6,19 +6,19 @@ import {useFetch} from "../common/customHooks/useFetch";
 import {getCharacterList} from "../common/apiUtils";
 import Search from "../components/Search/Search";
 import CharacterCard from "../components/CharacterCard/CharacterCard";
+
 function Copyright() {
     return (
         <Typography variant="body2" align="center">
             <Link href="https://www.marvel.com/" color="inherit" underline="none">
-                Data provided by Marvel. © 2020 MARVEL
+                Data provided by Marvel. © 2022 MARVEL
             </Link>
         </Typography>
     )
 }
-
 const Home: NextPage = () => {
     const [search, setSearch] = useState('')
-    const {data: characterList, loading} = useFetch(getCharacterList, [search], [], [search])
+    const {data: characterList} = useFetch(getCharacterList, [search], [], [search])
     return (
         <Box sx={{display: 'flex', flexDirection: 'column', minHeight: '100vh',}}>
             <CssBaseline/>
@@ -40,29 +40,28 @@ const Home: NextPage = () => {
                       direction="column"
                       justifyContent="center"
                       alignItems="center">
-                    <Grid item>
-                        <Typography variant="h6" noWrap>
-                            Find your favourite Marvel Character
-                        </Typography>
-                    </Grid>
-                    <Grid item>
-                        <Search handleChange={(val: string) => setSearch(val)}/>
-                    </Grid>
-                    <Grid  container
-                           direction="row"
-                           justifyContent="center"
-                           alignItems="center"
-                    spacing={3}>
-                        {characterList.map(character=>(
-                            <Grid item  sm={6} md={6} lg={3}>
-                                <CharacterCard key={character['id']} name={character['name']} description={character['description']} modified={character['modified']} thumbnail={character['thumbnail']}/>
+                        <Grid item>
+                            <Typography variant="h6" noWrap>
+                                Find your favourite Marvel Character
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <Search handleChange={(val: string) => setSearch(val)}/>
+                        </Grid>
+                    <Grid container
+                          direction="row"
+                          justifyContent="center"
+                          alignItems="center"
+                          spacing={3}>
+                        {characterList.map(character => (
+                            <Grid item sm={6} md={6} lg={3} key={character['id']}>
+                                <CharacterCard name={character['name']}
+                                               description={character['description']} modified={character['modified']}
+                                               thumbnail={character['thumbnail']}/>
                             </Grid>
-                                ))}
-
+                        ))}
                     </Grid>
                 </Grid>
-
-
             </Container>
             <Box
                 component="footer"

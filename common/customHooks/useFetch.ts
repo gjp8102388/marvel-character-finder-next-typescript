@@ -1,5 +1,5 @@
-import { AxiosError, AxiosPromise } from 'axios';
-import { useState, useEffect } from 'react';
+import {AxiosError, AxiosPromise} from 'axios';
+import {useEffect, useState} from 'react';
 
 export const useFetch = <T>(apiCall: (...args: any[]) => AxiosPromise, options: any, initialState: T, dependencies: Array<any> = []) => {
     const [data, setData] = useState(initialState);
@@ -20,7 +20,9 @@ export const useFetch = <T>(apiCall: (...args: any[]) => AxiosPromise, options: 
                     setError(e);
                 }
             });
-        return () => { isSubscribed = false; };
+        return () => {
+            isSubscribed = false;
+        };
     }, [...dependencies]);
-    return { data, loading, error, setData };
+    return {data, loading, error, setData};
 };
