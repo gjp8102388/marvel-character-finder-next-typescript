@@ -6,12 +6,12 @@ interface Props {
 }
 
 const Search = ({handleChange}: Props) => {
-    const [value, setValue] = useState('Spider-man');
+    const [value, setValue] = useState('');
     useEffect(() => {
         handleChange(value);
     }, [value])
     return (
-        <input type="text" name="search" className={styles.input} placeholder={`Spider-man`}
+        <input type="text" name="search" className={styles.input} placeholder={"SEARCH THE CHARACTER..."}
                onChange={({target: {value}}) => setValue(value)}/>
     )
 }

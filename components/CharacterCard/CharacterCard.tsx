@@ -2,21 +2,10 @@ import {Card, CardContent, CardMedia, Typography, CardHeader, IconButton} from "
 import {useState} from "react";
 import classes from './CharacterCard.module.css'
 import CloseIcon from '@mui/icons-material/Close';
-interface Props {
-    name: string | null;
-    description: string | null;
-    modified: string;
-    thumbnail: {
-        path: string | null;
-        extension: string | null;
-    }
-
-}
-
-const CharacterCard = ({name, description, modified, thumbnail}: Props) => {
+import {ICharacter} from "../../common/interfaces/ICharacter";
+const CharacterCard = ({name, description, modified, thumbnail} :ICharacter) => {
     const [open, setOpen] = useState(false);
     const updatedTime = new Date(modified).toLocaleDateString("en-au",{day:"2-digit", month:"short",year:"numeric"});
-
     const handleClick = () => {
         setOpen(!open)
     }
