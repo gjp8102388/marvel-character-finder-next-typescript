@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-const apikey = process.env.NEXT_PUBLIC_API_KEY;
+const baseUrl = 'http://gateway.marvel.com/';
+const apikey = 'f4056f0d40a4ceb06847f85f18b154c7';
 export const getCharacterList = (nameStartsWith: string) =>
     axios({
         method: 'get',
