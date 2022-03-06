@@ -1,23 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Marvel Character finder
 
-## Getting Started
+This project was bootstrapped with [Next.js](https://netjs.org/), [Vercel Platform](https://vercel.com) and [`creat-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
+- HTML5
+- CSS
+- TypeScript
+- Next.js
+- Material UI
+- Axios
+
+## Before you run this project
+
+Before you run this project, you should do the following two things step by step:
+
+### `yarn install`
+
+Install all the required packages for this project.
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `yarn dev`
+
+Runs the app in the development mode.
+
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make changes.
+
+
+## Marvel API
+
+- Sign up for a free account and review their API documentation - https://developer.marvel.com/  
+- Once you create an account, you will get your API key.
+- Add `.env.development.local` file and set your environment variables. 
+```javascript
+NEXT_PUBLIC_BASE_URL=https://gateway.marvel.com
+NEXT_PUBLIC_PUBLIC_KEY= YOUR PUBLIC KEY
+NEXT_PUBLIC_PRIVATE_KEY= YOUR PRIVATE KEY
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
