@@ -41,3 +41,6 @@ yarn-error.log*
 .idea
 
 yarn.lock
+next.config.js
+next-env.d.ts
+tsconfig.json
