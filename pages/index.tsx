@@ -6,6 +6,7 @@ import {useFetch} from "../common/customHooks/useFetch";
 import {getCharacterList} from "../common/apiUtils";
 import Search from "../components/Search/Search";
 import CharacterCard from "../components/CharacterCard/CharacterCard";
+import NotFound from "../components/NotFound/NotFound";
 
 function Copyright() {
     return (
@@ -50,17 +51,22 @@ const Home: NextPage = () => {
                         </Grid>
                     <Grid container
                           direction="row"
-                          justifyContent="center"
+                          justifyContent={characterList.length?"flex-start":"center"}
                           alignItems="center"
                           spacing={3}>
-                        {characterList.map(character => (
+                        {characterList.length?(characterList.map(character => (
                             <Grid item sm={6} md={6} lg={3} key={character['id']}>
                                 <CharacterCard name={character['name']}
                                                description={character['description']} modified={character['modified']}
                                                thumbnail={character['thumbnail']}/>
                             </Grid>
-                        ))}
+                        ))):null}
                     </Grid>
+                    {!characterList.length?(
+                        <NotFound name={search}/>
+                    ):(
+                        null
+                    )}
                 </Grid>
             </Container>
             <Box
