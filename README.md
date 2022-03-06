@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Next.js](https://netjs.org/), [Vercel Platform](https://vercel.com) and [`creat-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Live Demo
+
+[Marvel-Character-Finder](https://marvel-character-finder-alpha.vercel.app/)
+
 ## Tech Stack
 
 - HTML5
